@@ -27,7 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('projects.create');
     }
 
     /**
@@ -38,7 +38,10 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        [
+            'title' => 'titolo progetto',
+            'number' => 'numero progetto'
+        ];
     }
 
     /**
