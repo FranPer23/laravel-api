@@ -2,7 +2,8 @@
 @section('content')
     <h2>Questo testo si trova in create</h2>
     <h3>quindi qua creo un nuovo progetto</h3>
-    <form>
+    <form action="{{ route('projects.create') }}" method="POST">
+        @csrf
         <div class="row">
             <div class="col">
                 <label for="title">
