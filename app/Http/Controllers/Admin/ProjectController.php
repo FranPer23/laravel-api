@@ -38,10 +38,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        [
-            'title' => 'titolo progetto',
-            'number' => 'numero progetto'
-        ];
+        $data = $request->all();
+        $project = new Project();
+        $project->fill($data);
+        $project->save();
+
+        return redirect()->route('projects.show', $project->id);
     }
 
     /**
@@ -63,7 +65,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $project = Project::findOrFail();
+        return view('projects.edit', compact('project'));
     }
 
     /**
