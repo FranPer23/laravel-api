@@ -20,7 +20,8 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->prefix('admin')->name('admin')->group(function () {
-    Route::get('/' . [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('projects', ProjectController::class)->parameters(['projects' => 'projects:slug']);
 });
 
 require __DIR__ . '/auth.php';
