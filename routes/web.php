@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::middleware(['auth'])->prefix('admin')->name('admin')->group(function () {
+// Route::get('/admin', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('admin.dashboard');
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('projects', ProjectController::class)->parameters(['projects' => 'projects:slug']);
+    // Route::resource('projects', ProjectController::class)->parameters(['projects' => 'projects:slug']);
 });
 
 require __DIR__ . '/auth.php';
