@@ -7,16 +7,12 @@
         <div class="row">
             <div class="col">
                 <label for="title">Titolo progetto</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Nome progetto"
-                    value="{{ old('title') }}>
-                
-
+                <input type="text" class="form-control" id="title" name="title" placeholder="Nome progetto">
             </div>
+
             <div class="col">
                 <label for="number">Numero</label>
-                <input type="text" class="form-control" id="number" name="number" placeholder="Numero progetto"
-                    {{ old('number') }}>
-
+                <input type="text" class="form-control" id="number" name="number" placeholder="Numero progetto">
 
             </div>
         </div>
