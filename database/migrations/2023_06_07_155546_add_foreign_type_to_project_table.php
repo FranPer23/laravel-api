@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('type', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('type_id');
-            $table->timestamps();
-
-            $table->foreign('type_id')->references(
-                'id'
-            )->on('projects')->onDelete('cascade');
+        Schema::table('project', function (Blueprint $table) {
+            $table->unsignedBigInteger('category_id')->nullable()->after('id');
+            $table->foreign('type_id')->references('id')->on('types');
         });
     }
 
@@ -31,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type');
+        Schema::table('project', function (Blueprint $table) {
+            $table->dropForeign('projects_type_id_foreign');
+            $table->dropColumn('type_id');
+        });
     }
 };
