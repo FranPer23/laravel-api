@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
+
 
 class ProjectController extends Controller
 {
@@ -27,7 +31,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        return view('admin.projects.create');
     }
 
     /**
@@ -38,12 +42,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        $project = new Project();
-        $project->fill($data);
-        $project->save();
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['title']);
+        $project = Project::create($data);
 
-        return redirect()->route('projects.show', $project->id);
+
+        return redirect()->route('admin.projects.index');
     }
 
     /**
@@ -54,7 +58,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('admin.project.show', compact('project'));
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -65,8 +69,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        $project = Project::findOrFail();
-        return view('projects.edit', compact('project'));
+
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -78,7 +82,10 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['title']);
+        $project->update($data);
+        return redirect()->route('admin.projects.index')->with('message', "{$project->title} è stato modificato correttamente");
     }
 
     /**
@@ -89,6 +96,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('message', "{$project->title} è stato cancellato");
     }
 }

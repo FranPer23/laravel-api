@@ -12,6 +12,7 @@
                     <th scope="col">Titolo</th>
                     <th scope="col">Numero</th>
                     <th scope="col">Slug</th>
+                    <th scope="col">Azioni</th>
 
                 </tr>
             </thead>
@@ -25,6 +26,7 @@
                             <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-success">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
+
                             <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-warning">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
