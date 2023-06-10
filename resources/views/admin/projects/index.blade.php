@@ -9,6 +9,7 @@
             <thead>
                 <tr>
                     <th scope="col">Titolo</th>
+                    <th scope="col">Tipologia</th>
                     <th scope="col">Numero</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Azioni</th>
@@ -19,7 +20,10 @@
                 @foreach ($projects as $project)
                     <tr>
                         <th scope="row">{{ $project->title }}</th>
+                        <td>{{ $project->type?->name }}</td>
+
                         <td>{{ $project->number }}</td>
+
                         <td>{{ $project->slug }}</td>
                         <td>
                             <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-success">

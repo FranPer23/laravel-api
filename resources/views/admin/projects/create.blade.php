@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 @section('content')
-    <h2>Questo testo si trova in create</h2>
-    <h3>quindi qua creo un nuovo progetto</h3>
+    <h2>Creo un nuovo progetto</h2>
+    {{-- 
+    @include('partials.errors') --}}
     <form action="{{ route('admin.projects.store') }}" method="POST">
         @csrf
         <div class="row">
@@ -9,6 +10,18 @@
                 <label for="title">Titolo progetto</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Nome progetto">
             </div>
+            <div>
+                <label for="type">Tipologia</label>
+                <select class="form-select" id="type" name="category_id" aria-label="Default select example">
+                    <option value=""></option>
+                    @foreach ($types as $type)
+                        <option @selected(old('type_id') == $type->id) value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
+
+
+                </select>
+            </div>
+
 
             <div class="col">
                 <label for="number">Numero</label>

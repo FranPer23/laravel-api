@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\Type;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Auth;
 
 
 class ProjectController extends Controller
@@ -31,7 +35,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -40,13 +45,12 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        // $data = $request->validated();
-        // $data['slug'] = Str::slug($data['title']);
-        // $project = Project::create($data);
 
-
+        $data = $request->validated();
+        $data['slug'] = Str::slug($data['title']);
+        $project = Project::create($data);
         return redirect()->route('admin.projects.index');
     }
 
@@ -58,6 +62,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        // $projects = Project::all();
         return view('admin.projects.show', compact('project'));
     }
 
@@ -69,8 +74,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        $projects = Project::all();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -80,7 +86,7 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
         $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);

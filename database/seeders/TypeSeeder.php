@@ -16,7 +16,7 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        $types = ['Stagionali', 'Mensili', 'Fesività', 'Ambiti'];
+        $types = ['HTML', 'CSS', 'PHP', 'JS'];
         foreach ($types as $type_value) {
             $new_type = new Type();
             $new_type->name = $type_value;
