@@ -28,6 +28,19 @@
                 <input type="text" class="form-control" id="number" name="number" placeholder="Numero progetto">
 
             </div>
+            {{-- <div>
+                <label for="technology">Tech</label>
+                <select class="form-select" id="technology" name="technology_id" aria-label="Default select example">
+                    <option value=""></option>
+                    @foreach ($technologies as $technology)
+                        <option @selected(old('technology_id') == $technology->id) value="{{ $technology->id }}">{{ $technology->name }}</option>
+                    @endforeach
+
+
+                </select>
+            </div> --}}
+
+
         </div>
         <button class="btn btn-primary" type="submit">Invia</button>
     </form>
