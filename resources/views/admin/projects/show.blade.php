@@ -15,8 +15,15 @@
                 @else
                     <p class="card-text">nessuna categoria selezionata</p>
                 @endif
+                @if ($project->technology->isNotEmpty())
+                    <p class="card-text">{{ $project->technology->name }}</p>
+                @else
+                    <p class="card-text">nessuna tecnologia presente</p>
+                @endif
 
             </div>
         </div>
+
+
     </div>
 @endsection

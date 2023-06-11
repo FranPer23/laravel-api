@@ -6,14 +6,16 @@
         <a href="{{ route('admin.projects.create') }}" class="btn btn-success">Nuovo progetto</a>
     </div>
     <div class="container">
-        <table class="table">
+        <table class="table table-compact table-sm">
             <thead>
                 <tr>
                     <th scope="col">Titolo</th>
                     <th scope="col">Tipologia</th>
                     <th scope="col">Numero</th>
                     <th scope="col">Slug</th>
+
                     <th scope="col">Azioni</th>
+                    <th scope="col">Tech</th>
 
                 </tr>
             </thead>
@@ -26,6 +28,7 @@
                         <td>{{ $project->number }}</td>
 
                         <td>{{ $project->slug }}</td>
+
                         <td>
                             <a href="{{ route('admin.projects.show', $project->slug) }}" class="btn btn-success">
                                 <i class="fa-solid fa-eye"></i>
@@ -42,6 +45,14 @@
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>
+                        </td>
+                        <td>
+                            @if ($project->technology->isNotEmpty())
+                                <p class="card-text">{{ $project->technology->first()->name }}</p>
+                            @else
+                                <p class="card-text">n/a</p>
+                            @endif
+
                         </td>
                     </tr>
                 @endforeach
