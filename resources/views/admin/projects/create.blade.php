@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('content')
     <h2>Creo un nuovo progetto</h2>
-    {{-- 
-    @include('partials.errors') --}}
+
+    @include('partials.errors')
     <form action="{{ route('admin.projects.store') }}" method="POST">
         @csrf
         <div class="row">

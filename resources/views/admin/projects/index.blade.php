@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+    @include('partials.session_message')
     <h2 class="mt-3">Questa è la lista dei progetti</h2>
     <div class="text-end">
         <a href="{{ route('admin.projects.create') }}" class="btn btn-success">Nuovo progetto</a>

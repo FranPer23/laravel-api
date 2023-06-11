@@ -91,7 +91,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
         $project->update($data);
-        return redirect()->route('admin.projects.index')->with('message', "{$project->title} è stato modificato correttamente");
+        return redirect()->route('admin.projects.index')->with('message', "<strong> $project->title </strong> è stato modificato correttamente");
     }
 
     /**
