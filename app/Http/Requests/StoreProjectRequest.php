@@ -30,7 +30,8 @@ class StoreProjectRequest extends FormRequest
                 'projects'
             )],
             'number' => 'nullable',
-            'type_id' => ['nullable', 'exists:categories,id']
+            'type_id' => ['nullable', 'exists:categories,id'],
+            'technology_id' => ['nullable']
         ];
     }
 }

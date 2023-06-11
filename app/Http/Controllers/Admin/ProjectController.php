@@ -12,6 +12,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -35,8 +36,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $technologies = Technology::all();
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -74,9 +76,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        $technologies = Technology::all();
         $types = Type::all();
         $projects = Project::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -91,6 +94,7 @@ class ProjectController extends Controller
         $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
         $project->update($data);
+        $technologies = Technology::all();
         return redirect()->route('admin.projects.index')->with('message', "<strong> $project->title </strong> è stato modificato correttamente");
     }
 

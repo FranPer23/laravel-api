@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class TechnologyController extends Controller
      */
     public function index()
     {
-        //
+        $technologies = Technology::all();
+
+        return view('admin.technologies.index', compact('technologies'));
     }
 
     /**
@@ -25,9 +28,6 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        // $technologies = Technology::all();
-
-        // return view('admin.projects.index', compact('technologies'));
     }
 
     /**
@@ -49,10 +49,9 @@ class TechnologyController extends Controller
     public function show(Technology $technology)
     {
         // Esempio di assegnazione dei dati alla variabile $technologies nel tuo controller
-        //   $technologies = Technology::all();
+        $technologies = Technology::all();
 
-        //         return view('admin.projects.index', compact('technologies'));
-
+        return view('admin.technologies.show', compact('technologies'));
     }
 
     /**

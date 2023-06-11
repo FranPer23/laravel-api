@@ -28,17 +28,18 @@
                 <input type="text" class="form-control" id="number" name="number" placeholder="Numero progetto">
 
             </div>
-            {{-- <div>
-                <label for="technology">Tech</label>
-                <select class="form-select" id="technology" name="technology_id" aria-label="Default select example">
-                    <option value=""></option>
-                    @foreach ($technologies as $technology)
-                        <option @selected(old('technology_id') == $technology->id) value="{{ $technology->id }}">{{ $technology->name }}</option>
-                    @endforeach
-
-
-                </select>
-            </div> --}}
+            <div class="form-group">
+                <label for="technologies">Technologies</label>
+                @foreach ($technologies as $technology)
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="technologies[]"
+                            id="technology{{ $technology->id }}" value="{{ $technology->id }}"
+                            {{ in_array($technology->id, $project->technologies->pluck('id')->toArray()) ? 'checked' : '' }}>
+                        <label class="form-check-label"
+                            for="technology{{ $technology->id }}">{{ $technology->name }}</label>
+                    </div>
+                @endforeach
+            </div>
 
 
         </div>
