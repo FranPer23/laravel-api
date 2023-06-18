@@ -16,7 +16,8 @@
                     <p class="card-text">nessuna categoria selezionata</p>
                 @endif
                 @if ($project->technology->isNotEmpty())
-                    <p class="card-text">{{ $project->technology->name }}</p>
+                    <p class="card-text">nome del progetto</p>
+                    {{-- {{ $project->type->name }} --}}
                 @else
                     <p class="card-text">nessuna tecnologia presente</p>
                 @endif

@@ -28,7 +28,7 @@
                 <input type="text" class="form-control" id="number" name="number" placeholder="Numero progetto">
 
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="technologies">Technologies</label>
                 @foreach ($technologies as $technology)
                     <div class="form-check">
@@ -39,7 +39,7 @@
                             for="technology{{ $technology->id }}">{{ $technology->name }}</label>
                     </div>
                 @endforeach
-            </div>
+            </div> --}}
 
 
         </div>
